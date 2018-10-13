@@ -12,11 +12,14 @@ class AvengerElement extends React.Component {
 
         <ImageBackground
           style={styles.avg_img}
-          source={ {uri: getAvengerImage(avenger.thumbnail.path, avenger.thumbnail.extension)}
-        }>
+          source={
+            getAvengerImage(avenger.thumbnail.path, avenger.thumbnail.extension).includes('image_not_available')?
+            require('../Images/image_not_available.png')
+            : {uri: getAvengerImage(avenger.thumbnail.path, avenger.thumbnail.extension)} }
+          >
           <Text style={styles.name_text}>{avenger.name}</Text>
         </ImageBackground>
-        
+
       </TouchableOpacity>
     )
   }
