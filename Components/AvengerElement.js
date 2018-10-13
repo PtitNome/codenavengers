@@ -4,15 +4,19 @@ import { getAvengerImage } from '../Data/MarvelAPI'
 
 class AvengerElement extends React.Component {
   render() {
-    const avenger = this.props.avenger
+    const { avenger, displayInfoAvenger } = this.props
     return(
-      <TouchableOpacity style={styles.main_container}>
+      <TouchableOpacity
+        style={styles.main_container}
+        onPress={() => displayInfoAvenger(avenger.id)}>
+
         <ImageBackground
           style={styles.avg_img}
           source={ {uri: getAvengerImage(avenger.thumbnail.path, avenger.thumbnail.extension)}
         }>
           <Text style={styles.name_text}>{avenger.name}</Text>
         </ImageBackground>
+        
       </TouchableOpacity>
     )
   }

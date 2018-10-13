@@ -52,6 +52,11 @@ class AvengerList extends React.Component {
     }
   }
 
+  _displayInfoAvenger = (idAvenger) => {
+    console.log("Afficher infos pour l'avenger avec l'id " + idAvenger)
+    this.props.navigation.navigate("AvengerInfo", { idAvenger: idAvenger})
+  }
+
   constructor(props) {
     super(props)
 
@@ -71,7 +76,7 @@ class AvengerList extends React.Component {
       <View style={styles.main_container}>
         <TextInput
           style={styles.textinput}
-          placeholder="Type here avenger's names starting letters"
+          placeholder="Type here starting letters of avenger's names"
           onChangeText={(text) => this._searchBy1stLetters(text)}
           //onSubmitEditing={(text) => this._loadFilms()}
         />
@@ -81,7 +86,8 @@ class AvengerList extends React.Component {
         <FlatList
           data={this.state.avengers}
           keyExtractor={(item) => item.id.toString()}
-          renderItem={({item}) => <AvengerElement avenger={item}/>}
+          renderItem={({item}) => <AvengerElement avenger={item}
+            displayInfoAvenger={this._displayInfoAvenger}/>}
         />
         {this._displayLoading()}
       </View>
@@ -96,7 +102,8 @@ const styles = StyleSheet.create({
   },
   textinput: {
     backgroundColor: 'black',
-    marginTop: 25,
+    color: "white",
+    marginTop: 24,
     height: 50,
     paddingLeft: 5
   },
