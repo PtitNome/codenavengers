@@ -9,7 +9,7 @@ class AvengerElement extends React.Component {
       <TouchableOpacity style={styles.main_container}>
         <ImageBackground
           style={styles.avg_img}
-          source={ {uri: getAvengerImage(avenger.thumbnail.path, avenger.thumbnail.extension)} 
+          source={ {uri: getAvengerImage(avenger.thumbnail.path, avenger.thumbnail.extension)}
         }>
           <Text style={styles.name_text}>{avenger.name}</Text>
         </ImageBackground>
@@ -24,6 +24,8 @@ const styles = StyleSheet.create({
   },
   avg_img: {
     flex: 1,
+    borderColor: 'black',
+    borderWidth: 1,
     backgroundColor: 'gray',
   },
   name_text: {

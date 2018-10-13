@@ -3,21 +3,35 @@ import CryptoJS from 'crypto-js';
 import { APIKEY, PRVKEY } from './ApiKeys'
 
 
-export function getAvengersList () {
+export function getAvengersList (offset) {
 //  console.log("**************** getAvengersList ****************")
   const TS = Date.now()
   const HASH = CryptoJS.MD5(TS + PRVKEY + APIKEY).toString(CryptoJS.enc.Hex)
-  const PARAMS = '?ts=' + TS + '&apikey=' + APIKEY + '&hash=' + HASH
-  const URL = 'https://gateway.marvel.com/v1/public/characters' + PARAMS
+  let params = '?ts=' + TS + '&apikey=' + APIKEY + '&hash=' + HASH
+  params += "&offset=" + offset
+  const URL = 'https://gateway.marvel.com/v1/public/characters' + params
 
   return fetch(URL)
     .then((response) => response.json())
-    .catch((error) => console.error(error))
+    .catch((error) => console.log(" %%% getAvengersList() - fetch ERROR: " + error))
+}
+
+export function getAvengersListNamesStartsWith (nameStartsWith, offset) {
+//  console.log("**************** getAvengersList ****************")
+  const TS = Date.now()
+  const HASH = CryptoJS.MD5(TS + PRVKEY + APIKEY).toString(CryptoJS.enc.Hex)
+  let params = '?ts=' + TS + '&apikey=' + APIKEY + '&hash=' + HASH
+  params += "&nameStartsWith=" + nameStartsWith + "&offset=" + offset
+  const URL = 'https://gateway.marvel.com/v1/public/characters' + params
+
+  return fetch(URL)
+    .then((response) => response.json())
+    .catch((error) => console.log(" %%% getAvengersListNamesStartsWith() - fetch ERROR: " + error))
 }
 
 export function getAvengerImage( path, extension ) {
   let URI = path + '/landscape_incredible.' + extension
-  console.log('*** getAvengerImage() - URI = ' + URI)
+  //console.log('*** getAvengerImage() - URI = ' + URI)
   return URI
 }
 
