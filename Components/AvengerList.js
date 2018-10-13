@@ -27,16 +27,29 @@ class AvengerList extends React.Component {
     })
   }
 
-  /* On restreint la liste aux noms d'avengers qui commencent par nameStart */
+  /* On restreint la liste aux noms d'avengers qui commencent par nameStartsWith */
   _searchBy1stLetters(nameStartsWith) {
-    console.log("*** AvengerList._searchBy1stLetters() - text = " + nameStartsWith)
-    this.setState({ isLoading : true })
-    getAvengersListNamesStartsWith(nameStartsWith, 0).then(data => {
-      this.setState({
-        avengers: data.data.results,
-        isLoading: false
-      })
-    })
+    if(!this.state.isLoading) {
+      console.log("*** AvengerList._searchBy1stLetters() - text = " + nameStartsWith)
+      this.setState({ isLoading : true })
+      //Traitement si changement du textinput vers une string vide
+      if(nameStartsWith !== "") {
+        getAvengersListNamesStartsWith(nameStartsWith, 0).then(data => {
+          this.setState({
+            avengers: data.data.results,
+            isLoading: false
+          })
+        })
+      }
+      else {
+        getAvengersList(0).then(data => {
+          this.setState({
+            avengers: data.data.results,
+            isLoading: false
+          })
+        })
+      }
+    }
   }
 
   constructor(props) {
@@ -58,7 +71,7 @@ class AvengerList extends React.Component {
       <View style={styles.main_container}>
         <TextInput
           style={styles.textinput}
-          placeholder='Premières lettres du nom'
+          placeholder="Enter avenger's names starting letters"
           onChangeText={(text) => this._searchBy1stLetters(text)}
           //onSubmitEditing={(text) => this._loadFilms()}
         />

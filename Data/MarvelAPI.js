@@ -26,7 +26,10 @@ export function getAvengersListNamesStartsWith (nameStartsWith, offset) {
 
   return fetch(URL)
     .then((response) => response.json())
-    .catch((error) => console.log(" %%% getAvengersListNamesStartsWith() - fetch ERROR: " + error))
+    .catch((error) => {
+      console.log(" %%% getAvengersListNamesStartsWith() - fetch ERROR: " + error)
+      throw error
+    })
 }
 
 export function getAvengerImage( path, extension ) {
