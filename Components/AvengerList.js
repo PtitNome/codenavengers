@@ -71,10 +71,13 @@ class AvengerList extends React.Component {
       <View style={styles.main_container}>
         <TextInput
           style={styles.textinput}
-          placeholder="Enter avenger's names starting letters"
+          placeholder="Type here avenger's names starting letters"
           onChangeText={(text) => this._searchBy1stLetters(text)}
           //onSubmitEditing={(text) => this._loadFilms()}
         />
+        {/* *** TODO ***
+         * Ajouter un Button reset pour le TextInput
+         */}
         <FlatList
           data={this.state.avengers}
           keyExtractor={(item) => item.id.toString()}
@@ -92,9 +95,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   textinput: {
+    backgroundColor: 'black',
     marginTop: 25,
-    marginLeft: 5,
-    marginRight: 5,
     height: 50,
     paddingLeft: 5
   },
