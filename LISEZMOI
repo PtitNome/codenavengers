@@ -1,0 +1,12 @@
+Note: Dans le syllabus du projet, Alexis voulait que
+la vue de détails d'un personnage indique le nom
+dans la vraie vie de l'Avenger.
+
+L'API de Marvel ne fournit pas cette information,
+je me suis donc permis de l'ommettre.
+
+Dépendances à installer pour la compilation/éxécution:
+  crypto-js
+  imagebackground?
+  react-navigation
+  (Il se peut que j'en oublie...)

@@ -20,6 +20,7 @@ class AvengerList extends React.Component {
   _loadAvengers() {
     this.setState({ isLoading : true })
     getAvengersList(0).then(data => {
+      //if(data.data.results.length == 0) créer un élément bidon indiquant qu'aucun personnage n'a été trouvé
       this.setState({
         avengers: data.data.results,
         isLoading: false
@@ -30,7 +31,7 @@ class AvengerList extends React.Component {
   /* On restreint la liste aux noms d'avengers qui commencent par nameStartsWith */
   _searchBy1stLetters(nameStartsWith) {
     if(!this.state.isLoading) {
-      console.log("*** AvengerList._searchBy1stLetters() - text = " + nameStartsWith)
+      //console.log("*** AvengerList._searchBy1stLetters() - text = " + nameStartsWith)
       this.setState({ isLoading : true })
       //Traitement si changement du textinput vers une string vide
       if(nameStartsWith !== "") {
