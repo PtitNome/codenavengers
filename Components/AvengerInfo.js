@@ -56,6 +56,7 @@ const styles = StyleSheet.create({
   },
   avg_img: {
     flex: 1,
+    alignSelf: 'center',
     borderColor: 'black',
     borderWidth: 1,
     backgroundColor: 'gray',

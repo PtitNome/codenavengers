@@ -11,7 +11,7 @@
  */
 
 import React from 'react';
-import { StyleSheet, View, Text, TextInput, ActivityIndicator } from 'react-native';
+import { StyleSheet, View, Text, Image, TextInput, ActivityIndicator } from 'react-native';
 import { FlatList } from 'react-native';
 import AvengerElement from './AvengerElement'
 import { getAvengersList, getAvengersListNamesStartsWith } from '../Data/MarvelAPI'
@@ -87,6 +87,10 @@ class AvengerList extends React.Component {
   render() {
     return (
       <View style={styles.main_container}>
+        <Image
+          style={styles.banner}
+          source={require('../Images/avengers_banner.png')}
+        />
         <TextInput
           style={styles.textinput}
           placeholder="Type here the starting letters of a character's name"
@@ -95,7 +99,7 @@ class AvengerList extends React.Component {
         {/* *** TODO ***
          * Ajouter un Button reset pour le TextInput
          */}
-        <FlatList
+        <FlatList style={styles.list}
           data={this.state.avengers}
           keyExtractor={(item) => item.id.toString()}
           renderItem={({item}) => <AvengerElement avenger={item}
@@ -111,13 +115,23 @@ const styles = StyleSheet.create({
   main_container: {
     flex: 1,
     backgroundColor: '#fff',
+    //alignItems: 'center',
+    //justifyContent: 'center',
+  },
+  banner: {
+    alignSelf: 'center',
+    height: 150,
+    marginTop: 24,
   },
   textinput: {
     backgroundColor: 'black',
     color: "white",
-    marginTop: 24,
+    //marginTop: 24,
     height: 50,
     paddingLeft: 5
+  },
+  list: {
+    backgroundColor: 'black',
   },
   loading_container: {
     position: 'absolute',
