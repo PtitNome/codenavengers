@@ -11,8 +11,9 @@
  */
 
 import React from 'react';
-import { StyleSheet, View, Text, Image, TextInput, ActivityIndicator } from 'react-native';
+import { StyleSheet, View, Text, Image, TextInput, Button, ActivityIndicator } from 'react-native';
 import { FlatList } from 'react-native';
+import { Keyboard } from 'react-native';
 import AvengerElement from './AvengerElement'
 import { getAvengersList, getAvengersListNamesStartsWith } from '../Data/MarvelAPI'
 
@@ -64,6 +65,12 @@ class AvengerList extends React.Component {
     }
   }
 
+  /* Pour vider le TextInput de recherche et réinitialiser la liste */
+  _clearInput = () => {
+    this._textInput.setNativeProps({text: ''})
+    this._loadAvengers()
+  }
+
   _displayInfoAvenger = (avenger) => {
     /*On passe l'objet avenger aux props la vue AvengerInfo via le PARAMS
       du Navigateur*/
@@ -91,11 +98,19 @@ class AvengerList extends React.Component {
           style={styles.banner}
           source={require('../Images/avengers_banner.png')}
         />
-        <TextInput
-          style={styles.textinput}
-          placeholder="Type here the starting letters of a character's name"
-          onChangeText={(text) => this._searchBy1stLetters(text)}
-        />
+        <View style={styles.input}>
+          <TextInput
+            ref={component => this._textInput = component}
+            style={styles.textinput}
+            placeholder="Type here the starting letters of a character's name"
+            onChangeText={(text) => this._searchBy1stLetters(text)}
+          />
+          <Button style={styles.button}
+            title='Reset'
+            color='gray'
+            onPress={this._clearInput}
+          />
+        </View>
         {/* *** TODO ***
          * Ajouter un Button reset pour le TextInput
          */}
@@ -123,12 +138,26 @@ const styles = StyleSheet.create({
     height: 150,
     marginTop: 24,
   },
+  input: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    //flex: 1,
+    height: 50,
+    backgroundColor: 'black',
+    padding: 5,
+  },
   textinput: {
+    flex: 1,
     backgroundColor: 'black',
     color: "white",
     //marginTop: 24,
     height: 50,
-    paddingLeft: 5
+    paddingLeft: 5,
+  },
+  button: {
+    flex: 1,
+    height: 50,
   },
   list: {
     backgroundColor: 'black',
