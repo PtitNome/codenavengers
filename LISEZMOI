@@ -46,8 +46,8 @@ quand le scroll du flatlist arrive à la fin.
 - Lorsque la liste est rechargée avec des nouvelles données, le scroll n'est
 pas ramené au début de la nouvelle liste.
 
-- Fusionner getAvengersList() et getAvengersListNamesStartsWith() et
-passera une str vide ("") lorsque l'on ne fait pas de recherche.
+- Fusionner getAvengersList() et getAvengersListNamesStartsWith(), avec un
+paramètre dafault ("") lorsque l'on ne fait pas de recherche.
 
 - Externaliser le traitement du nameStartsWith et fusionner dans l'API
 les fonctions getAvengersList() et getAvengersListNamesStartsWith().
