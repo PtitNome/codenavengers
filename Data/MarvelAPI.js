@@ -11,7 +11,9 @@ export function getAvengersList (offset) {
   const TS = Date.now()
   const HASH = CryptoJS.MD5(TS + PRVKEY + APIKEY).toString(CryptoJS.enc.Hex)
   let params = '?ts=' + TS + '&apikey=' + APIKEY + '&hash=' + HASH
-  params += "&offset=" + offset
+  //En attendant d'implémenter un chargement des données à la volée
+  //en suivant le scroll du flatlist, on va charger 50 éléments à la fois dedans
+  params += '&offset=' + offset + '&limit=50'
   const URL = 'https://gateway.marvel.com/v1/public/characters' + params
 
   return fetch(URL)
