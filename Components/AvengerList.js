@@ -60,6 +60,7 @@ class AvengerList extends React.Component {
       }
       else {
         getAvengersList(0).then(data => {
+          data.data.results.splice(0, 1)
           this.setState({
             avengers: data.data.results,
             isLoading: false
