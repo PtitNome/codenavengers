@@ -53,9 +53,9 @@ class AvengerList extends React.Component {
     }
   }
 
-  _displayInfoAvenger = (idAvenger) => {
-    console.log("Afficher infos pour l'avenger avec l'id " + idAvenger)
-    this.props.navigation.navigate("AvengerInfo", { idAvenger: idAvenger})
+  _displayInfoAvenger = (avenger) => {
+    //console.log("Afficher infos pour l'avenger avec l'id " + idAvenger)
+    this.props.navigation.navigate("AvengerInfo", { avenger: avenger})
   }
 
   constructor(props) {

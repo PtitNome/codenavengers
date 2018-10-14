@@ -10,3 +10,28 @@ Dépendances à installer pour la compilation/éxécution:
   imagebackground?
   react-navigation
   (Il se peut que j'en oublie...)
+
+  <View style={styles.view_container}>
+    <Image
+      style={styles.avg_img}
+      source={
+        getAvengerImage(this.props.navigation.state.params.avenger.thumbnail.path,
+          this.props.navigation.state.params.avenger.thumbnail.extension).includes('image_not_available')?
+        require('../Images/image_not_available.png')
+        : {uri: getAvengerImage(this.props.navigation.state.params.avenger.thumbnail.path,
+          this.props.navigation.state.params.avenger.thumbnail.extension)} }
+    />
+  </View>
+
+  <ScrollView style={styles.scrollview_container}>
+    <Text style={styles.text_name}>Name : {this.props.navigation.state.params.avenger.name}</Text>
+    <Text style={styles.default_text}>Real identity : Lorem Ipsum</Text>
+    <Text style={styles.default_text}>Age : 38</Text>
+    <Text style={styles.description_text}>Description : {this.props.navigation.state.params.avenger.description}</Text>
+    <Text style={styles.description_text}>Super power : Sans son armure robotisée, Tony Stark n'est qu'un simple humain. Lorsqu'il revêt son armure, il dispose de plusieurs capacités surhumaines, différentes selon l'armure qu'il utilise1.
+
+      Son armure actuelle possède de nombreux éléments standards des versions passées ; elle peut être transportée dans un attaché-case quand elle est démontée1. L'armure est conçue avec une technologie de « métal mémoriel », ce qui la rend légère et flexible quand elle n'est pas utilisée, mais extrêmement résistante quand elle est polarisée1.
+
+      L'élément caractéristique de l'armure d'Iron Man est sa principale arme à énergie, appelée « rayon répulseur », une arme conçue pour repousser les attaques en émettant un puissant rayon de particules à partir des paumes de ses gants, aussi utilisée comme un bouclier d'absorption d'énergie1. L'armure est également protégée par un champ de force individuel1.
+    </Text>
+  </ScrollView>

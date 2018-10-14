@@ -2,7 +2,10 @@
 import CryptoJS from 'crypto-js';
 import { APIKEY, PRVKEY } from './ApiKeys'
 
-
+/*
+ * Récupère un tableau de personnages avengers par lots de 20.
+ * offset: Déplacement dans la liste complète de l'APIKEY
+ */
 export function getAvengersList (offset) {
 //  console.log("**************** getAvengersList ****************")
   const TS = Date.now()
@@ -16,6 +19,10 @@ export function getAvengersList (offset) {
     .catch((error) => console.log(" %%% getAvengersList() - fetch ERROR: " + error))
 }
 
+/*
+ * Même chose que getAvengersList(), mais on peut filtré par nom d'Avengers
+ * débutant pas la string fournit dans nameStartsWith
+ */
 export function getAvengersListNamesStartsWith (nameStartsWith, offset) {
 //  console.log("**************** getAvengersList ****************")
   const TS = Date.now()

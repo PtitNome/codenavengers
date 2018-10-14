@@ -3,12 +3,17 @@ import { StyleSheet, View, Text,TouchableOpacity, ImageBackground } from 'react-
 import { getAvengerImage } from '../Data/MarvelAPI'
 
 class AvengerElement extends React.Component {
+  constructor(props) {
+    super(props)
+    //console.log("*** avenger.name = " + props.avenger.name)
+  }
+
   render() {
     const { avenger, displayInfoAvenger } = this.props
     return(
       <TouchableOpacity
         style={styles.main_container}
-        onPress={() => displayInfoAvenger(avenger.id)}>
+        onPress={() => displayInfoAvenger(avenger)}>
 
         <ImageBackground
           style={styles.avg_img}
