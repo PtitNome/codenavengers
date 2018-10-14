@@ -33,6 +33,10 @@ class AvengerList extends React.Component {
   _loadAvengers() {
     this.setState({ isLoading : true })
     getAvengersList(this.state.offset).then(data => {
+      /* Workaround temporaire qui supprime 3-D Man
+         qui gâche un peut la première impression par les couleurs
+         de son image. */
+      data.data.results.splice(0, 1)
       //if(data.data.results.length == 0) créer un élément bidon indiquant qu'aucun personnage n'a été trouvé
       this.setState({
         avengers: data.data.results,
