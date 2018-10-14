@@ -21,7 +21,7 @@ pour chaque personnage, il arrive donc assez fréquemment que ce champ
 se retrouve vide dans la vue.
 
 La bannière dans la AvengerList provient d'un site de wallpaper, elle n'est
-pas de ma composition et est soumise à copyright je crois. L'image locale
+pas de ma composition et est soumise à copyright (je crois). L'image locale
 placeholder utilisée lorsque l'API n'en fournit pas est composée d'éléments
 provenants de PngTree.com.
 
@@ -47,7 +47,7 @@ quand le scroll du flatlist arrive à la fin.
 pas ramené au début de la nouvelle liste.
 
 - Fusionner getAvengersList() et getAvengersListNamesStartsWith(), avec un
-paramètre dafault ("") lorsque l'on ne fait pas de recherche.
+paramètre default ("") lorsque l'on ne fait pas de recherche.
 
 - Externaliser le traitement du nameStartsWith et fusionner dans l'API
 les fonctions getAvengersList() et getAvengersListNamesStartsWith().
