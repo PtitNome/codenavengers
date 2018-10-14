@@ -19,11 +19,11 @@ class AvengerList extends React.Component {
 
   _loadAvengers() {
     this.setState({ isLoading : true })
-    getAvengersList(0).then(data => {
+    getAvengersList(this.state.offset).then(data => {
       //if(data.data.results.length == 0) créer un élément bidon indiquant qu'aucun personnage n'a été trouvé
       this.setState({
         avengers: data.data.results,
-        isLoading: false
+        isLoading: false,
       })
     })
   }
@@ -63,7 +63,8 @@ class AvengerList extends React.Component {
 
     this.state = {
       avengers: [],
-      isLoading: false
+      isLoading: false,
+      offset: 0,
     }
   }
 
