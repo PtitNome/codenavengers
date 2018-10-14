@@ -72,7 +72,6 @@ class AvengerList extends React.Component {
   }
 
   render() {
-    console.log(this.state.isLoading)
     return (
       <View style={styles.main_container}>
         <TextInput
