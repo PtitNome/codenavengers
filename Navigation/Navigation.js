@@ -17,6 +17,10 @@ const SearchStackNavigator = createStackNavigator({
     screen: AvengerInfo,
     navigationOptions: {
       title: 'Profile',
+      headerStyle: {
+        backgroundColor: 'black',
+      },
+      headerTintColor: 'snow',
     }
   }
 
