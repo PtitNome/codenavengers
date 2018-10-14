@@ -52,5 +52,5 @@ paramètre default ("") lorsque l'on ne fait pas de recherche.
 - Externaliser le traitement du nameStartsWith et fusionner dans l'API
 les fonctions getAvengersList() et getAvengersListNamesStartsWith().
 
-- Créer un élément bidon insérant un message "No character found" lorsque
-recherche ne retourne aucun résult dans la liste
+- Créer un élément bidon insérant un message "No character found" lorsque la
+recherche ne retourne aucun résultat dans la liste
