@@ -44,7 +44,9 @@ quand le scroll du flatlist arrive à la fin.
   aux héros...) On continuerait de télécharger les images du site de Marvel.
 
 - Lorsque la liste est rechargée avec des nouvelles données, le scroll n'est
-pas ramené au début de la nouvelle liste.
+pas ramené au début de la nouvelle liste. (*** Résolu à moitié, le scroll 
+retourne bien au début mais le fait avant l'actualisation visuelle de la
+nouvelle liste.)
 
 - Fusionner getAvengersList() et getAvengersListNamesStartsWith(), avec un
 paramètre default ("") lorsque l'on ne fait pas de recherche.
