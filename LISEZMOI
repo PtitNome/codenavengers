@@ -1,5 +1,5 @@
 Notes:
-Je devrais vous avoir fournit un fichier nommé ApiKeys.js, qui contient
+Je devrais vous avoir fournit un fichier nommé APIKeys.js, qui contient
 les clefs d'authentification à l'API Marvel. Je ne voulais pas mettre
 ces clefs disponible à tous les monde sur github.
 Il faut placer le fichier ApiKeys.js dans le dossier Data/.
@@ -29,8 +29,12 @@ Dépendances à installer pour la compilation/éxécution:
   (Il se peut que j'en oublie...)
 
 **************************************************************
-Ce qui resterais à faire:
+Ce qui pourrait être encore amélioré:
 - Implémenter le chargement d'un nouveau bloc de 50(?) personnages
-quand le scroll du flatlist arrive à la fin
+quand le scroll du flatlist arrive à la fin.
 - Lorsque la liste est rechargée avec des nouvelles données, le scroll n'est
-pas ramené au début de la nouvelle liste
+pas ramené au début de la nouvelle liste.
+- Fusionner getAvengersList() et getAvengersListNamesStartsWith() et
+passera une str vide ("") lorsque l'on ne fait pas de recherche.
+- Externaliser le traitement du nameStartsWith et fusionner dans l'API
+les fonctions getAvengersList() et getAvengersListNamesStartsWith().

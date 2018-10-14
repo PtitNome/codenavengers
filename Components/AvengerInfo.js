@@ -1,4 +1,7 @@
-// Components/AvengerInfo.js
+/*
+ * AvengerInfo: Vue d'affichage le la photo du personnage,
+ * mais surtout du détail de ses informations
+ */
 
 import React from 'react';
 import { StyleSheet, View, ScrollView, Image, ActivityIndicator, Text } from 'react-native'
@@ -6,12 +9,9 @@ import { getAvengerImage } from '../Data/MarvelAPI'
 
 class AvengerInfo extends React.Component {
 
-  constructor(props) {
-    super(props)
-    //console.log("avenger.name = " + this.props.navigation.state.params.avenger.name)
-  }
-
   render() {
+    /* On récupère l'objet avenger passé par les props.navigation.state.params
+      en provenance du Navigateur */
     return (
       <View style={styles.main_container}>
         <View style={styles.view_container}>
@@ -45,7 +45,8 @@ const styles = StyleSheet.create({
   },
   view_container: {
     /* À défaut de réussir a faire fonctionner le FlexBox,
-    en attendant on force de height en pixels */
+    en attendant on force le height en pixels
+    pour que l'image ne prenne qu'environ le tier de la vue */
     height: 220,
     //flex: 1
   },
@@ -69,7 +70,6 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 5,
     color: 'snow',
-    //textAlign: 'center'
   },
   description_text: {
     fontStyle: 'italic',
@@ -83,16 +83,6 @@ const styles = StyleSheet.create({
     marginTop: 5,
     color: 'snow',
   }
-
-  /*loading_container: {
-    position: 'absolute',
-    left: 0,
-    right: 0,
-    top: 100,
-    bottom: 0,
-    alignItems: 'center',
-    justifyContent: 'center'
-  },*/
 })
 
 export default AvengerInfo

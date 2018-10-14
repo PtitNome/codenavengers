@@ -1,10 +1,12 @@
-// Navigation/Navigation.js
+/*
+ * Navigation: Tout est dit.
+ */
 
 import { createStackNavigator } from 'react-navigation'
 import AvengerList from '../Components/AvengerList'
 import AvengerInfo from '../Components/AvengerInfo'
 
-const SearchStackNavigator = createStackNavigator({
+const AppStackNavigator = createStackNavigator({
 
   Avengers: {
     screen: AvengerList,
@@ -26,4 +28,4 @@ const SearchStackNavigator = createStackNavigator({
 
 })
 
-export default SearchStackNavigator
+export default AppStackNavigator

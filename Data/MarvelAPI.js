@@ -1,9 +1,15 @@
-// Data/MarvelAPI.js
+/*
+ * MarvelAPI: Récupération des informations et photos des personnages
+ *            via l'API de Marvel. (https://developer.marvel.com)
+ *
+ * TODO: Fusionner getAvengersList() et getAvengersListNamesStartsWith() et
+ *       passera une str vide ("") lorsque l'on ne fait pas de recherche
+ */
 import CryptoJS from 'crypto-js';
-import { APIKEY, PRVKEY } from './ApiKeys'
+import { APIKEY, PRVKEY } from './APIKeys'
 
 /*
- * Récupère un tableau de personnages avengers par lots de 20.
+ * Récupère un tableau de personnages avengers par lots (&limit=50).
  * offset: Déplacement dans la liste complète de l'APIKEY
  */
 export function getAvengersList (offset) {
@@ -11,8 +17,8 @@ export function getAvengersList (offset) {
   const TS = Date.now()
   const HASH = CryptoJS.MD5(TS + PRVKEY + APIKEY).toString(CryptoJS.enc.Hex)
   let params = '?ts=' + TS + '&apikey=' + APIKEY + '&hash=' + HASH
-  //En attendant d'implémenter un chargement des données à la volée
-  //en suivant le scroll du flatlist, on va charger 50 éléments à la fois dedans
+  /* En attendant d'implémenter un chargement des données à la volée
+     en suivant le scroll du flatlist, on va charger les premiers 50 éléments*/
   params += '&offset=' + offset + '&limit=50'
   const URL = 'https://gateway.marvel.com/v1/public/characters' + params
 
@@ -26,7 +32,7 @@ export function getAvengersList (offset) {
  * débutant pas la string fournit dans nameStartsWith
  */
 export function getAvengersListNamesStartsWith (nameStartsWith, offset) {
-//  console.log("**************** getAvengersList ****************")
+//  console.log("**************** getAvengersListNamesStartsWith ****************")
   const TS = Date.now()
   const HASH = CryptoJS.MD5(TS + PRVKEY + APIKEY).toString(CryptoJS.enc.Hex)
   let params = '?ts=' + TS + '&apikey=' + APIKEY + '&hash=' + HASH
@@ -41,12 +47,16 @@ export function getAvengersListNamesStartsWith (nameStartsWith, offset) {
     })
 }
 
+/* Construction de l'url complet de l'image d'un personnage
+ * TODO: Fusionner les paramètre thumbnail.path et
+ * thumbnail.extension en un seul élément thumbnail */
 export function getAvengerImage( path, extension ) {
   let URI = path + '/landscape_incredible.' + extension
   //console.log('*** getAvengerImage() - URI = ' + URI)
   return URI
 }
 
+/* Obsolete! Test du fonctionnement de la connection à l'API Marvel */
 export function testGetCharactersList () {
   console.log("*********************************************")
   const TS = Date.now()

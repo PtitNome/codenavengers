@@ -1,3 +1,9 @@
+/*
+ * AvengerElement: Component custom d'affichage de la photo
+ * du personnage avec son nom en overlay pour affichage dans le 
+ * FlatList de AvengerList.
+ */
+
 import React from 'react';
 import { StyleSheet, View, Text,TouchableOpacity, ImageBackground } from 'react-native';
 import { getAvengerImage } from '../Data/MarvelAPI'

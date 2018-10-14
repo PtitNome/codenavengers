@@ -1,12 +1,24 @@
+/*
+ * AvengerList: Vue principale, affichage d'une liste de personnages
+ * récupérée via l'API Marvel (MarvelAPI.js).
+ *
+ * (Pour l'instant on ne gère pas la navigation dans la via l'offset
+ *  et le chargement à la volée des données... Il faudra à ce moment gérer
+ * la donnée 'data.total' de l'API pour détecté la fin de la liste.)
+ *
+ * TODO: Externaliser le traitement du nameStartsWith et fusionner dans l'API
+ * les fonctions getAvengersList() et getAvengersListNamesStartsWith()
+ */
+
 import React from 'react';
 import { StyleSheet, View, Text, TextInput, ActivityIndicator } from 'react-native';
 import { FlatList } from 'react-native';
-import avengers from '../Data/tempData'
 import AvengerElement from './AvengerElement'
 import { getAvengersList, getAvengersListNamesStartsWith } from '../Data/MarvelAPI'
 
 class AvengerList extends React.Component {
-
+  /* Affichage d'un sablier pendant le chargement
+   * des données via l'API Marvel */
   _displayLoading() {
       if (this.state.isLoading) {
         return (
@@ -31,8 +43,7 @@ class AvengerList extends React.Component {
   /* On restreint la liste aux noms d'avengers qui commencent par nameStartsWith */
   _searchBy1stLetters(nameStartsWith) {
     if(!this.state.isLoading) {
-      //console.log("*** AvengerList._searchBy1stLetters() - text = " + nameStartsWith)
-      this.setState({ isLoading : true })
+      this.setState({ isLoading : true }) //Affichage du sablier
       //Traitement si changement du textinput vers une string vide
       if(nameStartsWith !== "") {
         getAvengersListNamesStartsWith(nameStartsWith, 0).then(data => {
@@ -54,7 +65,8 @@ class AvengerList extends React.Component {
   }
 
   _displayInfoAvenger = (avenger) => {
-    //console.log("Afficher infos pour l'avenger avec l'id " + idAvenger)
+    /*On passe l'objet avenger aux props la vue AvengerInfo via le PARAMS
+      du Navigateur*/
     this.props.navigation.navigate("AvengerInfo", { avenger: avenger})
   }
 
@@ -64,7 +76,7 @@ class AvengerList extends React.Component {
     this.state = {
       avengers: [],
       isLoading: false,
-      offset: 0,
+      offset: 0, //Pour usage ultérieur
     }
   }
 
@@ -79,7 +91,6 @@ class AvengerList extends React.Component {
           style={styles.textinput}
           placeholder="Type here the starting letters of a character's name"
           onChangeText={(text) => this._searchBy1stLetters(text)}
-          //onSubmitEditing={(text) => this._loadFilms()}
         />
         {/* *** TODO ***
          * Ajouter un Button reset pour le TextInput
