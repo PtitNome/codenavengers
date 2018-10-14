@@ -73,6 +73,11 @@ class AvengerList extends React.Component {
   _clearInput = () => {
     this._textInput.setNativeProps({text: ''})
     this._loadAvengers()
+    this._scrollToTop()
+  }
+
+  _scrollToTop = () => {
+    this._flatList.scrollToIndex({ animated: false, index: 0, viewOffset: 0, viewPosition: 0 })
   }
 
   _displayInfoAvenger = (avenger) => {
@@ -107,7 +112,11 @@ class AvengerList extends React.Component {
             ref={component => this._textInput = component}
             style={styles.textinput}
             placeholder="Type here the starting letters of a character's name"
-            onChangeText={(text) => this._searchBy1stLetters(text)}
+            onChangeText={(text) => {
+                this._searchBy1stLetters(text)
+                this._scrollToTop()
+              }
+            }
           />
           <Button style={styles.button}
             title='Reset'
@@ -119,10 +128,13 @@ class AvengerList extends React.Component {
          * Ajouter un Button reset pour le TextInput
          */}
         <FlatList style={styles.list}
+          ref={component => this._flatList = component}
           data={this.state.avengers}
           keyExtractor={(item) => item.id.toString()}
           renderItem={({item}) => <AvengerElement avenger={item}
             displayInfoAvenger={this._displayInfoAvenger}/>}
+          //refreshing={this.state.isLoading}
+          //onRefresh={() => this._scrollToTop}
         />
         {this._displayLoading()}
       </View>
