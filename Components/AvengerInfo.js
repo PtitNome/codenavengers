@@ -75,8 +75,8 @@ const styles = StyleSheet.create({
   description_text: {
     fontStyle: 'italic',
     color: 'snow',
-    margin: 10,
-    marginBottom: 15
+    margin: 5,
+    marginLeft: 10,
   },
   default_text: {
     marginLeft: 10,
