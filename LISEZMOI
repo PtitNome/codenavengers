@@ -30,8 +30,11 @@ Dépendances à installer pour la compilation/éxécution:
 
 **************************************************************
 Ce qui pourrait être encore amélioré:
-- Implémenter le chargement d'un nouveau bloc de 50(?) personnages
+- Implémenter le chargement d'un nouveau bloc de (moins de 50?) personnages
 quand le scroll du flatlist arrive à la fin.
+- Étudier la possibilité de conserver la BD des textes en local? (Seulement
+  1500 personnages, et peut-être trouver un moyen de la restreindre juste
+  aux héros...)
 - Lorsque la liste est rechargée avec des nouvelles données, le scroll n'est
 pas ramené au début de la nouvelle liste.
 - Fusionner getAvengersList() et getAvengersListNamesStartsWith() et
