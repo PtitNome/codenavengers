@@ -7,7 +7,7 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <Navigation/>
+      <Navigation style={ {flex: 1} }/>
     );
   }
 }

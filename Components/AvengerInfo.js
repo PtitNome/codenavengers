@@ -44,7 +44,10 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
   },
   view_container: {
+    /* À défaut de réussir a faire fonctionner le FlexBox,
+    en attendant on force de height en pixels */
     height: 220,
+    //flex: 1
   },
   scrollview_container: {
     flex: 2,
