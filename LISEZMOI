@@ -14,11 +14,11 @@ sa description et ses supers pouvoirs.
 
 L'API de Marvel ne fournit pas d'informations concernant le vrai nom,
 l'age et les supers pouvoirs, j'ai quand même ajouter ces champs dans la
-vue, mais vous verrez que j'y ai mis du Lorem Ipsum.
+vue AvengerInfo, mais vous verrez que j'y ai mis du Lorem Ipsum.
 
 De plus, la description n'est pas toujours renseignée dans l'API
 pour chaque personnage, il arrive donc assez fréquemment que ce champ
-se retrouve vide.
+se retrouve vide dans la vue.
 
 La bannière dans la AvengerList provient d'un site de wallpaper, elle n'est
 pas de ma composition et est soumise à copyright je crois. L'image locale
