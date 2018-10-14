@@ -1,8 +1,8 @@
 Notes:
-Je devrais vous avoir fournit un fichier nommé APIKeys.js, qui contient
-les clefs d'authentification à l'API Marvel. Je ne voulais pas mettre
-ces clefs disponible à tous les monde sur github.
-Il faut placer le fichier ApiKeys.js dans le dossier Data/.
+Je devrais vous avoir fournit dans le courriel un fichier nommé APIKeys.js,
+qui contient mes clefs d'authentification à l'API Marvel. Je ne voulais
+pas mettre ces clefs disponible à tous les monde sur github.
+Il faut placer le fichier APIKeys.js dans le dossier Data/.
 
 Je n'ai pas vu dans les données de personnages retournées par
 l'API de champs permettant de différencier les héros des vilains.
@@ -20,6 +20,11 @@ De plus, la description n'est pas toujours renseignée dans l'API
 pour chaque personnage, il arrive donc assez fréquemment que ce champ
 se retrouve vide.
 
+La bannière dans la AvengerList provient d'un site de wallpaper, elle n'est
+pas de ma composition et est soumise à copyright je crois. L'image locale
+placeholder utilisée lorsque l'API n'en fournit pas est composée d'éléments
+provenants de PngTree.com.
+
 **************************************************************
 
 Dépendances à installer pour la compilation/éxécution:
@@ -30,14 +35,22 @@ Dépendances à installer pour la compilation/éxécution:
 
 **************************************************************
 Ce qui pourrait être encore amélioré:
+
 - Implémenter le chargement d'un nouveau bloc de (moins de 50?) personnages
 quand le scroll du flatlist arrive à la fin.
+
 - Étudier la possibilité de conserver la BD des textes en local? (Seulement
   1500 personnages, et peut-être trouver un moyen de la restreindre juste
-  aux héros...)
+  aux héros...) On continuerait de télécharger les images du site de Marvel.
+
 - Lorsque la liste est rechargée avec des nouvelles données, le scroll n'est
 pas ramené au début de la nouvelle liste.
+
 - Fusionner getAvengersList() et getAvengersListNamesStartsWith() et
 passera une str vide ("") lorsque l'on ne fait pas de recherche.
+
 - Externaliser le traitement du nameStartsWith et fusionner dans l'API
 les fonctions getAvengersList() et getAvengersListNamesStartsWith().
+
+- Créer un élément bidon insérant un message "No character found" lorsque
+recherche ne retourne aucun résult dans la liste
