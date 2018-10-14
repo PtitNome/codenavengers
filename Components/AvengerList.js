@@ -77,7 +77,7 @@ class AvengerList extends React.Component {
       <View style={styles.main_container}>
         <TextInput
           style={styles.textinput}
-          placeholder="Type here starting letters of avenger's names"
+          placeholder="Type here the starting letters of an character's name"
           onChangeText={(text) => this._searchBy1stLetters(text)}
           //onSubmitEditing={(text) => this._loadFilms()}
         />
