@@ -56,3 +56,6 @@ les fonctions getAvengersList() et getAvengersListNamesStartsWith().
 
 - Créer un élément bidon insérant un message "No character found" lorsque la
 recherche ne retourne aucun résultat dans la liste
+
+- Remplacer par l'usage de FlexBox le hardcoding du height occupé par l'image
+  de l'avenger sur la vue AvengerInfo
