@@ -41,7 +41,7 @@ quand le scroll du flatlist arrive à la fin.
 
 - Étudier la possibilité de conserver la BD des textes en local? (Seulement
   1500 personnages, et peut-être trouver un moyen de la restreindre juste
-  aux héros...) On continuerait de télécharger les images du site de Marvel.
+  aux héros...?) On continuerait de télécharger les images du site de Marvel.
 
 - *** Lorsque la liste est rechargée avec des nouvelles données, le scroll n'est
 pas ramené au début de la nouvelle liste. (*** Résolu à moitié, le scroll
