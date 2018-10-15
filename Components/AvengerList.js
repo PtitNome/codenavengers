@@ -30,9 +30,9 @@ class AvengerList extends React.Component {
       }
     }
 
-  _loadAvengers() {
+  _loadAvengers(nameStartsWith = "") {
     this.setState({ isLoading : true })
-    getAvengersList(this.state.offset).then(data => {
+    getAvengersList(nameStartsWith).then(data => {
       /* Workaround temporaire qui supprime 3-D Man
          qui gâche un peut la première impression par les couleurs
          de son image. */
@@ -43,31 +43,6 @@ class AvengerList extends React.Component {
         isLoading: false,
       })
     })
-  }
-
-  /* On restreint la liste aux noms d'avengers qui commencent par nameStartsWith */
-  _searchBy1stLetters(nameStartsWith) {
-    if(!this.state.isLoading) {
-      this.setState({ isLoading : true }) //Affichage du sablier
-      //Traitement si changement du textinput vers une string vide
-      if(nameStartsWith !== "") {
-        getAvengersListNamesStartsWith(nameStartsWith, 0).then(data => {
-          this.setState({
-            avengers: data.data.results,
-            isLoading: false
-          })
-        })
-      }
-      else {
-        getAvengersList(0).then(data => {
-          data.data.results.splice(0, 1)
-          this.setState({
-            avengers: data.data.results,
-            isLoading: false
-          })
-        })
-      }
-    }
   }
 
   /* Pour vider le TextInput de recherche et réinitialiser la liste */
@@ -114,7 +89,7 @@ class AvengerList extends React.Component {
             style={styles.textinput}
             placeholder="Type here the starting letters of a character's name"
             onChangeText={(text) => {
-                this._searchBy1stLetters(text)
+                this._loadAvengers(text)
                 this._scrollToTop()
               }
             }
