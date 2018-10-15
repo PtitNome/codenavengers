@@ -50,8 +50,14 @@ export function getAvengersListNamesStartsWith (nameStartsWith, offset) {
 /* Construction de l'url complet de l'image d'un personnage
  * TODO: Fusionner les paramètre thumbnail.path et
  * thumbnail.extension en un seul élément thumbnail */
-export function getAvengerImage( path, extension ) {
+export function getAvengerImageObsolete( path, extension ) {
   let URI = path + '/landscape_incredible.' + extension
+  //console.log('*** getAvengerImage() - URI = ' + URI)
+  return URI
+}
+
+export function getAvengerImage( thumbnail ) {
+  let URI = thumbnail.path + '/landscape_incredible.' + thumbnail.extension
   //console.log('*** getAvengerImage() - URI = ' + URI)
   return URI
 }

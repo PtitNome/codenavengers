@@ -1,6 +1,6 @@
 /*
  * AvengerElement: Component custom d'affichage de la photo
- * du personnage avec son nom en overlay pour affichage dans le 
+ * du personnage avec son nom en overlay pour affichage dans le
  * FlatList de AvengerList.
  */
 
@@ -24,9 +24,9 @@ class AvengerElement extends React.Component {
         <ImageBackground
           style={styles.avg_img}
           source={
-            getAvengerImage(avenger.thumbnail.path, avenger.thumbnail.extension).includes('image_not_available')?
+            getAvengerImage(avenger.thumbnail).includes('image_not_available')?
             require('../Images/image_not_available.png')
-            : {uri: getAvengerImage(avenger.thumbnail.path, avenger.thumbnail.extension)} }
+            : {uri: getAvengerImage(avenger.thumbnail)} }
           >
           <Text style={styles.name_text}>{avenger.name}</Text>
         </ImageBackground>

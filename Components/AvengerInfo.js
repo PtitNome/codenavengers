@@ -20,9 +20,9 @@ class AvengerInfo extends React.Component {
           <Image
             style={styles.avg_img}
             source={
-              getAvengerImage(thumbnail.path, thumbnail.extension).includes('image_not_available') ?
+              getAvengerImage( thumbnail ).includes('image_not_available') ?
               require('../Images/image_not_available.png')
-              : {uri: getAvengerImage(thumbnail.path, thumbnail.extension)} }
+              : {uri: getAvengerImage( thumbnail )} }
           />
         </View>
         <ScrollView style={styles.scrollview_container}>
