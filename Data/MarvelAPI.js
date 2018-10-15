@@ -59,7 +59,7 @@ export function testGetCharactersList () {
     .catch((error) => console.error(error))
 }
 
-
+/* Obsolete! Test du fonctionnement de la connection à l'API Marvel */
 export function testGetCharacter( characterID ) {
   console.log("*********************************************")
   const TS = Date.now()
