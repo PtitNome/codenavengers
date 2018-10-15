@@ -3,7 +3,6 @@
  */
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { testGetCharactersList, testGetCharacter } from './Data/MarvelAPI';
 import Navigation from './Navigation/Navigation'
 
 export default class App extends React.Component {
