@@ -43,10 +43,10 @@ quand le scroll du flatlist arrive à la fin.
   1500 personnages, et peut-être trouver un moyen de la restreindre juste
   aux héros...?) On continuerait de télécharger les images du site de Marvel.
 
-- ***? Lorsque la liste est rechargée avec des nouvelles données, le scroll n'est
+- *** 1/2Résolu ***Lorsque la liste est rechargée avec des nouvelles données, le scroll n'est
 pas ramené au début de la nouvelle liste. (*** Résolu à moitié, le scroll
 retourne bien au début mais le fait avant l'actualisation visuelle de la
-nouvelle liste. (scroll automatique puis affichage des nouvelles données...))
+nouvelle liste. (scrollTop automatique puis affichage des nouvelles données...))
 
 *** Résolu *** - Fusionner getAvengersList() et getAvengersListNamesStartsWith(), avec un
 paramètre default ("") lorsque l'on ne fait pas de recherche.
@@ -56,6 +56,13 @@ les fonctions getAvengersList() et getAvengersListNamesStartsWith().
 
 - Créer un élément bidon insérant un message "No character found" lorsque la
 recherche ne retourne aucun résultat dans la liste
+  *** Ou peut-être plutot afficher une alerte, ça éviterait d'avoir
+      à gérer le clic sur l'élément bidon
+  *** Résolu *** - Petit bug, quand on part d'une liste vide pour afficher des données,
+    le scrollToIndex est out of range (-1)
 
 - Remplacer par l'usage de FlexBox le hardcoding du height occupé par l'image
   de l'avenger sur la vue AvengerInfo
+
+- Voir ce qui ne va pas avec l'image placeholder "Picture unavailable" qui
+  n'est pas centrée

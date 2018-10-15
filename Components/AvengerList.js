@@ -53,7 +53,10 @@ class AvengerList extends React.Component {
   }
 
   _scrollToTop = () => {
-    this._flatList.scrollToIndex({ animated: false, index: 0, viewOffset: 0, viewPosition: 0 })
+    /* On scrollToTop seulement lorsque la liste n'est pas vide */
+    if(this.state.avengers.lenght > 0) {
+      this._flatList.scrollToIndex({ animated: false, index: 0, viewOffset: 0, viewPosition: 0 })
+    }
   }
 
   _displayInfoAvenger = (avenger) => {
@@ -83,6 +86,7 @@ class AvengerList extends React.Component {
           style={styles.banner}
           source={require('../Images/avengers_banner.png')}
         />
+
         <View style={styles.input}>
           <TextInput
             ref={component => this._textInput = component}
@@ -100,9 +104,7 @@ class AvengerList extends React.Component {
             onPress={this._clearInput}
           />
         </View>
-        {/* *** TODO ***
-         * Ajouter un Button reset pour le TextInput
-         */}
+
         <FlatList style={styles.list}
           ref={component => this._flatList = component}
           data={this.state.avengers}
