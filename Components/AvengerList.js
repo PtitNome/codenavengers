@@ -54,7 +54,7 @@ class AvengerList extends React.Component {
 
   _scrollToTop = () => {
     /* On scrollToTop seulement lorsque la liste n'est pas vide */
-    if(this.state.avengers.lenght > 0) {
+    if(this.state.avengers.length > 0) {
       this._flatList.scrollToIndex({ animated: false, index: 0, viewOffset: 0, viewPosition: 0 })
     }
   }
