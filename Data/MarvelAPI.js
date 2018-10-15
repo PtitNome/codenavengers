@@ -2,8 +2,6 @@
  * MarvelAPI: Récupération des informations et photos des personnages
  *            via l'API de Marvel. (https://developer.marvel.com)
  *
- * TODO: Fusionner getAvengersList() et getAvengersListNamesStartsWith() et
- *       passera une str vide ("") lorsque l'on ne fait pas de recherche
  */
 import CryptoJS from 'crypto-js';
 import { APIKEY, PRVKEY } from './APIKeys'
