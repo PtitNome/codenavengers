@@ -24,6 +24,7 @@ class AvengerList extends React.Component {
       avengers: [],
       offset: 0,
       nameStartsWith: '',
+      total: 0,
       isLoading: false,
       isRefreshing: false,
     }
@@ -42,22 +43,25 @@ class AvengerList extends React.Component {
     }
 
   _loadAvengers = () => {
-    this.setState({ isLoading : true })
+    if(this.state.total === 0 || this.state.total>this.state.offset) {
+      this.setState({ isLoading : true })
 
-    getAvengersList(this.state.offset, this.state.nameStartsWith).then(data => {
-      /* Workaround temporaire qui supprime 3-D Man
-         qui gâche un peu la première impression par les couleurs
-         de son image. */
-      data.data.results.splice(0, 1)
+      getAvengersList(this.state.offset, this.state.nameStartsWith).then(data => {
+        /* Workaround temporaire qui supprime 3-D Man
+           qui gâche un peu la première impression par les couleurs
+           de son image. */
+        data.data.results.splice(0, 1)
 
-      this.setState({
-        avengers: this.state.offset === 0 ? data.data.results : [...this.state.avengers, ...data.data.results],
-        //offset: data.data.offset, //+20?
-        isRefreshing: false,
-        isLoading: false,
+        this.setState({
+          avengers: this.state.offset === 0 ? data.data.results : [...this.state.avengers, ...data.data.results],
+          //offset: data.data.offset, //+20?
+          total: data.data.total,
+          isRefreshing: false,
+          isLoading: false,
+        })
       })
-    })
-    console.log("_loadAvengers() - this.state.offset=" + this.state.offset)
+      console.log("_loadAvengers() - this.state.offset=" + this.state.offset)
+    }
   }
 
   _refresh = () => {
