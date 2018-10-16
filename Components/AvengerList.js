@@ -23,6 +23,7 @@ class AvengerList extends React.Component {
     this.state = {
       avengers: [],
       offset: 0,
+      nameStartsWith: '',
       isLoading: false,
       isRefreshing: false,
     }
@@ -43,19 +44,20 @@ class AvengerList extends React.Component {
   _loadAvengers = () => {
     this.setState({ isLoading : true })
 
-    getAvengersList(/*_textInput.text, this.state.offset*/).then(data => {
+    getAvengersList(this.state.offset, this.state.nameStartsWith).then(data => {
       /* Workaround temporaire qui supprime 3-D Man
          qui gâche un peu la première impression par les couleurs
          de son image. */
       data.data.results.splice(0, 1)
 
       this.setState({
-        avengers: [...avengers, ...data.data.results],
-        offset: data.data.offset, //+20?
+        avengers: this.state.offset === 0 ? data.data.results : [...this.state.avengers, ...data.data.results],
+        //offset: data.data.offset, //+20?
         isRefreshing: false,
         isLoading: false,
       })
     })
+    console.log("_loadAvengers() - this.state.offset=" + this.state.offset)
   }
 
   _refresh = () => {
@@ -66,6 +68,7 @@ class AvengerList extends React.Component {
   }
 
   _loadMore = () => {
+    console.log("_loadMore()")
     this.setState({
         offset: this.state.offset+20
       },
@@ -78,7 +81,14 @@ class AvengerList extends React.Component {
   /* Pour vider le TextInput de recherche et réinitialiser la liste */
   _clearInput = () => {
     this._textInput.setNativeProps({text: ''})
-    this._loadAvengers()
+    this.setState({
+      avengers: [],
+      offset: 0,
+      nameStartsWith: ''
+    },
+    () => {
+      this._loadAvengers()
+    })
     this._scrollToTop()
   }
 
@@ -113,8 +123,16 @@ class AvengerList extends React.Component {
             style={styles.textinput}
             placeholder="Type here the starting letters of a character's name"
             onChangeText={(text) => {
-                //this._loadAvengers(text)
-                //this._scrollToTop()
+                this.setState({
+                    avengers: [],
+                    offset: 0,
+                    nameStartsWith: text
+                  },
+                  () => {
+                    this._loadAvengers()
+                  }
+                )
+                this._scrollToTop()
               }
             }
           />
@@ -134,7 +152,7 @@ class AvengerList extends React.Component {
           onRefresh={this._refresh}
           refreshing={this.state.isRefreshing}
           onEndReached={ this._loadMore }
-          onEndReachedThreshold={20}
+          onEndReachedThreshold={5}
         />
         {this._displayLoading()}
       </View>
