@@ -10,7 +10,7 @@ import { APIKEY, PRVKEY } from './APIKeys'
  * Même chose que getAvengersList(), mais on peut filtré par nom d'Avengers
  * débutant pas la string fournit dans nameStartsWith
  */
-export function getAvengersList(nameStartsWith = '', offset = 0) {
+export function getAvengersList(nameStartsWith = '', offset = 20) {
 //  console.log("**************** getAvengersListNamesStartsWith ****************")
   const TS = Date.now()
   const HASH = CryptoJS.MD5(TS + PRVKEY + APIKEY).toString(CryptoJS.enc.Hex)
@@ -18,11 +18,12 @@ export function getAvengersList(nameStartsWith = '', offset = 0) {
   if(nameStartsWith !== "") params += "&nameStartsWith=" + nameStartsWith
   params += "&offset=" + offset
   const URL = 'https://gateway.marvel.com/v1/public/characters' + params
+  console.log("URL=" + URL)
 
   return fetch(URL)
     .then((response) => response.json())
     .catch((error) => {
-      console.log(" %%% getAvengersListNamesStartsWith() - fetch ERROR: " + error)
+      console.log(" %%% getAvengersList() - fetch ERROR: " + error)
       throw error
     })
 }

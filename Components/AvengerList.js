@@ -6,23 +6,33 @@
  *  et le chargement à la volée des données... Il faudra à ce moment gérer
  * la donnée 'data.total' de l'API pour détecté la fin de la liste.)
  *
- * TODO: Externaliser le traitement du nameStartsWith et fusionner dans l'API
- * les fonctions getAvengersList() et getAvengersListNamesStartsWith()
  */
 
 import React from 'react';
 import { StyleSheet, View, Text, Image, TextInput, Button, ActivityIndicator } from 'react-native';
 import { FlatList } from 'react-native';
 import { Keyboard } from 'react-native';
-import AvengerElement from './AvengerElement'
-import { getAvengersList, getAvengersListNamesStartsWith } from '../Data/MarvelAPI'
+import AvengerElement from './AvengerElement';
+import { getAvengersList, getAvengersListNamesStartsWith } from '../Data/MarvelAPI';
 
 class AvengerList extends React.Component {
+
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      avengers: [],
+      offset: 0,
+      isLoading: false,
+      isRefreshing: false,
+    }
+  }
+
   /* Affichage d'un sablier pendant le chargement
    * des données via l'API Marvel */
   _displayLoading() {
       if (this.state.isLoading) {
-        return (
+          return (
           <View style={styles.loading_container}>
             <ActivityIndicator size='large' />
           </View>
@@ -30,19 +40,39 @@ class AvengerList extends React.Component {
       }
     }
 
-  _loadAvengers(nameStartsWith = "") {
+  _loadAvengers = () => {
     this.setState({ isLoading : true })
-    getAvengersList(nameStartsWith).then(data => {
+
+    getAvengersList(/*_textInput.text, this.state.offset*/).then(data => {
       /* Workaround temporaire qui supprime 3-D Man
-         qui gâche un peut la première impression par les couleurs
+         qui gâche un peu la première impression par les couleurs
          de son image. */
       data.data.results.splice(0, 1)
-      //if(data.data.results.length == 0) créer un élément bidon indiquant qu'aucun personnage n'a été trouvé
+
       this.setState({
-        avengers: data.data.results,
+        avengers: [...avengers, ...data.data.results],
+        offset: data.data.offset, //+20?
+        isRefreshing: false,
         isLoading: false,
       })
     })
+  }
+
+  _refresh = () => {
+    this.setState({
+        isRefreshing: true,
+      }, () => { this._loadAvengers() }
+    )
+  }
+
+  _loadMore = () => {
+    this.setState({
+        offset: this.state.offset+20
+      },
+      () => {
+        this._loadAvengers()
+      }
+    )
   }
 
   /* Pour vider le TextInput de recherche et réinitialiser la liste */
@@ -65,16 +95,6 @@ class AvengerList extends React.Component {
     this.props.navigation.navigate("AvengerInfo", { avenger: avenger})
   }
 
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      avengers: [],
-      isLoading: false,
-      offset: 0, //Pour usage ultérieur
-    }
-  }
-
   componentDidMount() {
     this._loadAvengers()
   }
@@ -93,8 +113,8 @@ class AvengerList extends React.Component {
             style={styles.textinput}
             placeholder="Type here the starting letters of a character's name"
             onChangeText={(text) => {
-                this._loadAvengers(text)
-                this._scrollToTop()
+                //this._loadAvengers(text)
+                //this._scrollToTop()
               }
             }
           />
@@ -108,11 +128,13 @@ class AvengerList extends React.Component {
         <FlatList style={styles.list}
           ref={component => this._flatList = component}
           data={this.state.avengers}
-          keyExtractor={(item) => item.id.toString()}
           renderItem={({item}) => <AvengerElement avenger={item}
             displayInfoAvenger={this._displayInfoAvenger}/>}
-          //refreshing={this.state.isLoading}
-          //onRefresh={() => this._scrollToTop}
+          keyExtractor={(item) => item.id.toString()}
+          onRefresh={this._refresh}
+          refreshing={this.state.isRefreshing}
+          onEndReached={ this._loadMore }
+          onEndReachedThreshold={20}
         />
         {this._displayLoading()}
       </View>
