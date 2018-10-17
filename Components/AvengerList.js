@@ -2,10 +2,6 @@
  * AvengerList: Vue principale, affichage d'une liste de personnages
  * récupérée via l'API Marvel (MarvelAPI.js).
  *
- * (Pour l'instant on ne gère pas la navigation dans la liste via l'offset
- *  et le chargement à la volée des données... Il faudra à ce moment gérer
- * la donnée 'data.total' de l'API pour détecté la fin de la liste.)
- *
  */
 
 import React from 'react';
