@@ -23,10 +23,7 @@ class AvengerElement extends React.Component {
 
         <ImageBackground
           style={styles.avg_img}
-          source={
-            getAvengerImage(avenger.thumbnail).includes('image_not_available')?
-            require('../Images/image_not_available.png')
-            : {uri: getAvengerImage(avenger.thumbnail)} }
+          source={ getAvengerImage(avenger.thumbnail) }
           >
           <Text style={styles.name_text}>{avenger.name}</Text>
         </ImageBackground>

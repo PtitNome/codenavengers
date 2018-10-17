@@ -39,6 +39,12 @@ export function getAvengerImageObsolete( path, extension ) {
 
 export function getAvengerImage( thumbnail ) {
   let URI = thumbnail.path + '/landscape_incredible.' + thumbnail.extension
+  if(URI.includes('image_not_available')) {
+    return require('../Images/image_not_available.png')
+  }
+  else {
+    return { uri: URI }
+  }
   //console.log('*** getAvengerImage() - URI = ' + URI)
   return URI
 }
