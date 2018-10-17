@@ -37,15 +37,13 @@ class AvengerInfo extends React.Component {
 
 const styles = StyleSheet.create({
   main_container: {
+    display: 'flex',
     flex: 1,
     flexDirection: 'column',
+    //alignItems: 'center',
   },
   view_container: {
-    /* À défaut de réussir a faire fonctionner le FlexBox,
-    en attendant on force le height en pixels
-    pour que l'image ne prenne qu'environ le tier de la vue */
-    height: 220,
-    //flex: 1
+    flex: 0.5,
   },
   scrollview_container: {
     flex: 2,
@@ -53,10 +51,12 @@ const styles = StyleSheet.create({
   },
   avg_img: {
     flex: 1,
-    //alignSelf: 'center',
     borderColor: 'black',
     borderWidth: 1,
     backgroundColor: 'gray',
+    height: undefined,
+    width: undefined,
+    resizeMode: 'contain',
   },
   text_name: {
     fontWeight: 'bold',

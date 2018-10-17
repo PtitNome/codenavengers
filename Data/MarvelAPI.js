@@ -18,7 +18,7 @@ export function getAvengersList(offset = 0, nameStartsWith = '') {
   if(nameStartsWith !== '') params += "&nameStartsWith=" + nameStartsWith
   params += "&offset=" + offset
   const URL = 'https://gateway.marvel.com/v1/public/characters' + params
-  //console.log("URL=" + URL)
+//  console.log("URL=" + URL)
 
   return fetch(URL)
     .then((response) => response.json())
@@ -39,14 +39,13 @@ export function getAvengerImageObsolete( path, extension ) {
 
 export function getAvengerImage( thumbnail ) {
   let URI = thumbnail.path + '/landscape_incredible.' + thumbnail.extension
+  console.log('*** getAvengerImage() - URI = ' + URI)
   if(URI.includes('image_not_available')) {
     return require('../Images/image_not_available.png')
   }
   else {
     return { uri: URI }
   }
-  //console.log('*** getAvengerImage() - URI = ' + URI)
-  return URI
 }
 
 /* Obsolete! Test du fonctionnement de la connection à l'API Marvel */
