@@ -22,9 +22,10 @@ class AvengerList extends React.Component {
 
     this.state = {
       avengers: [],
-      offset: 0,
-      nameStartsWith: '',
-      total: 0,
+      offset: 0, /* Où l'on est rendu dans la liste complete de l'API */
+      nameStartsWith: '', /* Définit la liste actuelle de la requête à l'API */
+      total: 0,  /* Nombre total d'élément dans la liste actuelle en fonctionnement
+                    du nameStartsWith spécifié */
       isLoading: false,
       isRefreshing: false,
     }
@@ -43,7 +44,10 @@ class AvengerList extends React.Component {
     }
 
   _loadAvengers = () => {
+    /* Seulement si le nb total d'élément de la liste est > que l'offset
+       où on est rendu */
     if(this.state.total === 0 || this.state.total>this.state.offset) {
+      //console.log("_loadAvengers() - this.state.offset=" + this.state.offset + " - this.state.total=" + this.state.total)
       this.setState({ isLoading : true })
 
       getAvengersList(this.state.offset, this.state.nameStartsWith).then(data => {
@@ -54,16 +58,15 @@ class AvengerList extends React.Component {
 
         this.setState({
           avengers: this.state.offset === 0 ? data.data.results : [...this.state.avengers, ...data.data.results],
-          //offset: data.data.offset, //+20?
           total: data.data.total,
           isRefreshing: false,
           isLoading: false,
         })
       })
-      console.log("_loadAvengers() - this.state.offset=" + this.state.offset)
     }
   }
 
+  /* À voir: L'utiliter de cette fonction sur l'event onRefresh */
   _refresh = () => {
     this.setState({
         isRefreshing: true,
@@ -72,7 +75,7 @@ class AvengerList extends React.Component {
   }
 
   _loadMore = () => {
-    console.log("_loadMore()")
+    //console.log("_loadMore()")
     this.setState({
         offset: this.state.offset+20
       },

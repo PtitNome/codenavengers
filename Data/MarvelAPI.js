@@ -18,7 +18,7 @@ export function getAvengersList(offset = 0, nameStartsWith = '') {
   if(nameStartsWith !== '') params += "&nameStartsWith=" + nameStartsWith
   params += "&offset=" + offset
   const URL = 'https://gateway.marvel.com/v1/public/characters' + params
-  console.log("URL=" + URL)
+  //console.log("URL=" + URL)
 
   return fetch(URL)
     .then((response) => response.json())
