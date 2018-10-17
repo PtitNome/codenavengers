@@ -20,7 +20,7 @@ class AvengerList extends React.Component {
       avengers: [],
       offset: 0, /* Où l'on est rendu dans la liste complete de l'API */
       nameStartsWith: '', /* Définit la liste actuelle de la requête à l'API */
-      total: 0,  /* Nombre total d'élément dans la liste actuelle en fonctionnement
+      total: 0,  /* Nombre total d'élément dans la liste actuelle en fonction
                     du nameStartsWith spécifié */
       isLoading: false,
       isRefreshing: false,
