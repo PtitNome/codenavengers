@@ -36,17 +36,16 @@ Dépendances à installer pour la compilation/éxécution:
 **************************************************************
 Ce qui pourrait être encore amélioré:
 
-- Implémenter le chargement d'un nouveau bloc de (moins de 50?) personnages
+- *** Résolu *** Implémenter le chargement d'un nouveau bloc de (moins de 50?) personnages
 quand le scroll du flatlist arrive à la fin.
 
+*** Avec le infiniteScroll, ce point n'est plus vraiment pertinent ***
 - Étudier la possibilité de conserver la BD des textes en local? (Seulement
   1500 personnages, et peut-être trouver un moyen de la restreindre juste
   aux héros...?) On continuerait de télécharger les images du site de Marvel.
 
-- *** 1/2Résolu ***Lorsque la liste est rechargée avec des nouvelles données, le scroll n'est
-pas ramené au début de la nouvelle liste. (*** Résolu à moitié, le scroll
-retourne bien au début mais le fait avant l'actualisation visuelle de la
-nouvelle liste. (scrollTop automatique puis affichage des nouvelles données...))
+- *** Résolu *** Lorsque la liste est rechargée avec des nouvelles données, le scroll n'est
+pas ramené au début de la nouvelle liste.
 
 *** Résolu *** - Fusionner getAvengersList() et getAvengersListNamesStartsWith(), avec un
 paramètre default ("") lorsque l'on ne fait pas de recherche.
@@ -54,7 +53,8 @@ paramètre default ("") lorsque l'on ne fait pas de recherche.
 *** Résolu *** - Externaliser le traitement du nameStartsWith et fusionner dans l'API
 les fonctions getAvengersList() et getAvengersListNamesStartsWith().
 
-- Créer un élément bidon insérant un message "No character found" lorsque la
+*** Pas vraiment un problème, l'écran noir vide est évident ***
+-  Créer un élément bidon insérant un message "No character found" lorsque la
 recherche ne retourne aucun résultat dans la liste
   *** Ou peut-être plutot afficher une alerte, ça éviterait d'avoir
       à gérer le clic sur l'élément bidon
